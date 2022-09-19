@@ -1,19 +1,8 @@
 from fastapi import FastAPI
-from fastapi.openapi.utils import get_openapi
 import os
 import json
 
 app = FastAPI()
-
-def my_schema():
-   openapi_schema = get_openapi(
-       title="IFSC API",
-       version="1.0",
-       description="An API developed by Hexaorzo to fetch bank and branch details from IFSC",
-       routes=app.routes,
-   )
-   app.openapi_schema = openapi_schema
-   return app.openapi_schema
 
 @app.get("/")
 async def root():
