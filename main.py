@@ -23,4 +23,3 @@ async def read_item(ifsc):
             return {"error": "Bank not found"}
     else:
         return {"error": "Invalid IFSC"}
-
