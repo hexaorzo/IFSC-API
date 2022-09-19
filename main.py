@@ -5,6 +5,16 @@ import json
 
 app = FastAPI()
 
+def my_schema():
+   openapi_schema = get_openapi(
+       title="IFSC API",
+       version="1.0",
+       description="An API developed by Hexaorzo to fetch bank and branch details from IFSC",
+       routes=app.routes,
+   )
+   app.openapi_schema = openapi_schema
+   return app.openapi_schema
+
 @app.get("/")
 async def root():
     return {"message": "This is an API developed by Hexaorzo to fetch bank details from IFSC code"}
@@ -25,12 +35,3 @@ async def read_item(ifsc):
     else:
         return {"error": "Invalid IFSC"}
 
-def api_schema():
-   openapi_schema = get_openapi(
-       title="IFSC API",
-       version="1.0",
-       description="An API developed by Hexaorzo to fetch bank and branch details from IFSC",
-       routes=app.routes,
-   )
-   app.openapi_schema = openapi_schema
-   return app.openapi_schema
